@@ -32,6 +32,7 @@ public class WaterRecordService {
         if (!repository.existsById(id)) {
             throw new ResourceNotFoundException("Record not found with id " + id);
         }
+
         repository.deleteById(id);
     }
 }

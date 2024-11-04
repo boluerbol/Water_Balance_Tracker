@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/water-records")
 public class WaterRecordController {
+
     @Autowired
     private WaterRecordService service;
     @GetMapping
