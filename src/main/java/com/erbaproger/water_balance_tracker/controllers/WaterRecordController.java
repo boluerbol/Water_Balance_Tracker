@@ -14,7 +14,20 @@ public class WaterRecordController {
     private WaterRecordService service;
     @GetMapping
     public List<WaterRecord> getAllRecords() { return service.getAllRecords(); }
-    @PostMapping
+    @PostMapping("/create")
     public WaterRecord createRecord(@RequestBody WaterRecord record) { return service.saveRecord(record); }
-    // More endpoints
+    @GetMapping("/getById/{id}")
+    public WaterRecord getRecordById(@PathVariable Long id) {
+        return service.getRecordById(id);
+    }
+    @PutMapping("/update/{id}")
+    public WaterRecord updateRecordById(@PathVariable Long id, @RequestBody WaterRecord updatedRecord) {
+        return service.updateRecord(id, updatedRecord);
+    }
+    @DeleteMapping("/delete/{id}")
+    public void deleteRecordById(@PathVariable Long id) {
+        service.deleteRecord(id);
+    }
+
+
 }
