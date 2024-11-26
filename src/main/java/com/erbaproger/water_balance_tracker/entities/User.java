@@ -1,13 +1,13 @@
 package com.erbaproger.water_balance_tracker.entities;
 
 
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import jakarta.validation.constraints.*;
+
+import java.util.List;
 
 @Setter
 @Getter
@@ -17,9 +17,24 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull(message = "Name is required BRO!!!")
     private String name;
-    private int dailyWaterGoal; // daily goal in milliliters
-    private String email; // for notifications, if needed
+
+    @Min(value = 0, message = "You have to drink not vomit :) ")
+    private int dailyWaterGoal;
+
+    @Email(message = "What is that? EMAIL!!!")
+    private String email;
+
     private boolean notificationsEnabled;
-    private String notificationFrequency; // e.g., "hourly", "every 2 hours"
+
+    @Enumerated(EnumType.STRING)
+    private NotificationFrequency notificationFrequency;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<WaterRecord> waterRecords;
+
+
 }
