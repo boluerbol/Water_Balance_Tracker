@@ -4,6 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum NotificationFrequency {
+    ONE_MINUTE("1 minute"),
     FIVE_MINUTES("5 minutes"),
     THIRTY_MINUTES("30 minutes"),
     ONE_HOUR("1 hour"),

@@ -47,7 +47,6 @@ public class WaterRecordController {
         return service.updateRecord(id, updatedRecord);
     }
 
-
     @DeleteMapping("/delete/{id}")
     public void deleteRecordById(@PathVariable Long id) {
         service.deleteRecord(id);}

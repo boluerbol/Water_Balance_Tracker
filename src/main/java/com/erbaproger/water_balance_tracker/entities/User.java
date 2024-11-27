@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import jakarta.validation.constraints.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Setter
@@ -24,7 +25,7 @@ public class User {
     @Min(value = 0, message = "You have to drink not vomit :) ")
     private int dailyWaterGoal;
 
-    @Email(message = "What is that? EMAIL!!!")
+    @Email(message = "What is that? Write EMAIL!!!")
     private String email;
 
     private boolean notificationsEnabled;
@@ -35,6 +36,8 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<WaterRecord> waterRecords;
+
+    private LocalDateTime lastNotificationTime;
 
 
 }
